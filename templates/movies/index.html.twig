@@ -5,7 +5,7 @@
 {% block stylesheets %}
     <style>
     .card img {
-        width: 300px;
+        width: 250px;
     }
     body {
         background-color: rgb(88, 117, 46);
@@ -25,38 +25,30 @@
     </div>
 </div>
 <div class="container">
-    {% for movies in movies %}
-        <div class="card-deck mb-3">
-            <div class="card ">
-                <div class="row">
-                    <div class="col md-6 text-center mt-5">
-                        <img class="card-img" src="{{ movies.cover }}" alt="Image du film">
-                        <div class="real text-light mt-2">
-                            De  {{ movies.author.name }}
-                        </div>
-                        <div class="text-light">
-                            {% for category in movies.category %}
-                                {{ category.name }}
-                            {% endfor %}
-                        </div>
-                        <div class="date text-light ">
-                            Sortie en salle le : {{ movies.date|date('d-m-Y') }}
-                        </div>
-                        <div class="link text-light">
-                            <a class="btn btn-primary mb-5 mt-2" href="{{ movies.link }}" role="button">Allociné</a>
-                        </div>
-                    </div>
-                    <div class="col md-6 d-flex justify-content-center align-items-center">
-                        <div class="card-body">
-                            <h5 class="card-title text-danger font-weight-bold">{{ movies.name}}</h5>
-                            <p class="card-text text-light">{{ movies.description}}</p>
-                            <p class="reviews text-warning">Note : {{ movies.reviews }} / 5</p>
+    <div class="row text-center">
+        {% for movies in movies %}
+            <div class="card-deck mb-3 col-md-4">
+                <div class="card ">
+                    <div class="row">
+                        <div class="col md-6 text-center mt-2">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger font-weight-bold">{{ movies.name}}</h5>
+                            </div>
+                            <img class="card-img" src="{{ movies.cover }}" alt="Image du film">
+                            <div class="detail">
+                                <a class="btn btn-primary mt-2" href="{{ path('movie', {
+                                    id: movies.id
+                                }) }}" role="button">Détail du film</a>
+                            </div>
+                            <div class="link text-light">
+                                <a class="btn btn-primary mb-2 mt-2" href="{{ movies.link }}" role="button">Allociné</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 
 
