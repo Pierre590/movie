@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Films{% endblock %}
+
+{% block stylesheets %}
+    <style>
+
+    body {
+        background-image: url('/img/merch-husey-Omy-jLERVBo-unsplash.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    .jumbotron {
+        background-image: url('/img/denise-jans-8eQOBtgn9Qo-unsplash.jpg');
+        background-size: cover;
+    }
+    .badge {
+        border-radius: 15px;
+    }
+
+    .card img {
+        width: 400px;.
+    }
+    .card {
+        background-image: url('/img/denise-jans-8eQOBtgn9Qo-unsplash.jpg');
+        background-size: cover;
+    }
+
+    </style>
+
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <a href="/movies" class="btn btn-secondary btn-lg active mt-3" role="button" aria-pressed="true">Home</a>
+</div>
+<div class="container">
+    <div class="example-wrapper text-center text-light mt-3 mb-3">
+        <h1>LE CINE DU QUARTIER</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="card mt-5">
+        <div class="row">
+            <div class="col md-6 text-center">
+                <img class="image" src="{{author.photo}}">
+            </div>
+            <div class="col md-6">
+                <h1 class="card-header text-light text-center font-weight-bold">{{author.name}}</h1>
+                    <div class="card-body">
+                        <h5 class="card-title text-center" style="background-color:white">{{author.nationality}} né le : {{author.birthday|date('d-m-Y')}}</h5>
+                        <p class="card-text" style="background-color:white">{{author.biography}}</p>
+                        <a href="{{author.link}}" class="btn btn-primary">En savoir plus</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

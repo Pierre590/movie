@@ -8,11 +8,26 @@
         width: 250px;
     }
     body {
-        background-color: rgb(88, 117, 46);
+        background-image: url('/img/merch-husey-Omy-jLERVBo-unsplash.jpg');
+        background-attachment: fixed;
+        background-size: cover;
     }
     .card {
         background-color: rgb(36, 38, 38);
         border-radius: 50px;
+    }
+    .test {
+        height: 250px;
+    }
+    .badge {
+        border-radius: 5px;
+    }
+    .page {
+        width: 100%;
+    }
+    .pagination {
+        margin: auto;
+        margin-left: 20%;
     }
     </style>
 {% endblock %}
@@ -20,13 +35,13 @@
 {% block body %}
 
 <div class="container">
-    <div class="example-wrapper text-center text-light">
-        <h1>Le chti ciné</h1>
+    <div class="example-wrapper text-center text-light mt-3 mb-3">
+        <h1>LE CINE DU QUARTIER</h1>
     </div>
 </div>
 <div class="container">
     <div class="row text-center">
-        {% for movies in movies %}
+        {% for movies in list %}
             <div class="card-deck mb-3 col-md-4">
                 <div class="card ">
                     <div class="row">
@@ -36,18 +51,20 @@
                             </div>
                             <img class="card-img" src="{{ movies.cover }}" alt="Image du film">
                             <div class="detail">
-                                <a class="btn btn-primary mt-2" href="{{ path('movie', {
-                                    id: movies.id
-                                }) }}" role="button">Détail du film</a>
-                            </div>
-                            <div class="link text-light">
-                                <a class="btn btn-primary mb-2 mt-2" href="{{ movies.link }}" role="button">Allociné</a>
+                                <a class="btn btn-primary mt-3 mb-3" href="{{ path('movie', {id: movies.id}) }}"
+                                role="button">Détail du film</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
+
+    </div>
+    <div class="page">
+        <div class="pagination mb-3">
+            {{ knp_pagination_render(list) }}
+        </div>
     </div>
 </div>
 

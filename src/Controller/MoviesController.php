@@ -5,23 +5,29 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Movies;
-
+use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\PaginatorInterface;
 
 class MoviesController extends AbstractController
 {
+
     /**
      * @Route("/movies", name="movies")
      */
-    public function index()
+    public function index(Request $request, PaginatorInterface $paginator)
     {
         $movies = $this->getDoctrine()
         ->getRepository(Movies::class)
-        ->findBy([], ['name'=>'ASC'], 20, 0);
+        ->findBy([], ['name'=>'ASC']);
 
-        dump($movies[0]->getCategory()[0]);
+        $list = $paginator->paginate(
+            $movies,
+            $request->query->getInt('page', 1),
+            24
+        );
 
         return $this->render('movies/index.html.twig', [
-            'movies' => $movies,
+            'list' => $list,
         ]);
     }
 
@@ -39,4 +45,7 @@ class MoviesController extends AbstractController
             'movie' => $movie,
         ]);
     }
+
+
+
 }
