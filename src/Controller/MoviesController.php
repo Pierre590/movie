@@ -18,7 +18,12 @@ class MoviesController extends AbstractController
     {
         $movies = $this->getDoctrine()
         ->getRepository(Movies::class)
-        ->findBy([], ['name'=>'ASC']);
+        ->createQueryBuilder('m')
+        ->where('m.name LIKE :name')
+        ->setParameter('name', '%%')
+        ->orderBy('m.name')
+        ->getQuery()
+        ->execute();
 
         $list = $paginator->paginate(
             $movies,
