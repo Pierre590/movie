@@ -33,8 +33,15 @@
 
 {% block body %}
 <div class="container">
-    <a href="/movies" class="btn btn-secondary btn-lg active mt-3" role="button" aria-pressed="true">Home</a>
+    <nav class="navbar navbar-light bg-dark text-light mb-4">
+        <a class="navbar-brand text-light"href="/movies">Home</a>
+        <form class="form-inline my-2 my-lg-0" action="{{path('movies')}}" method="get" >
+           <input name="search" class="form-control mr-sm-2"  type="search" placeholder="Rechercher">
+           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+         </form>
+    </nav>
 </div>
+
 <div class="container">
     <div class="example-wrapper text-center text-light mt-3 mb-3">
         <h1>LE CINE DU QUARTIER</h1>
