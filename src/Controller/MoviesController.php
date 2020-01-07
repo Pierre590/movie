@@ -16,11 +16,13 @@ class MoviesController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator)
     {
+        $search = (string) $request->query->get('search', null);
+
         $movies = $this->getDoctrine()
         ->getRepository(Movies::class)
         ->createQueryBuilder('m')
         ->where('m.name LIKE :name')
-        ->setParameter('name', '%%')
+        ->setParameter('name', '%' . $search .'%')
         ->orderBy('m.name')
         ->getQuery()
         ->execute();
@@ -28,7 +30,7 @@ class MoviesController extends AbstractController
         $list = $paginator->paginate(
             $movies,
             $request->query->getInt('page', 1),
-            24
+            12
         );
 
         return $this->render('movies/index.html.twig', [
