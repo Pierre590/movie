@@ -63,7 +63,9 @@
                     {% for movieAuthor in movie.author.movies %}
                     <div class="col-3">
                         <div class="card card-body mt-4">
-                            <img src="{{ movieAuthor.cover }}">
+                            <a href="{{ path('movie', {id: movieAuthor.id}) }}">
+                            <img src="{{ movieAuthor.cover }}" width ="100%">
+                            </a>
                         </div>
                     </div>
                     {% endfor %}
