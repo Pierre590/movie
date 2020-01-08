@@ -37,7 +37,7 @@
         <a class="navbar-brand text-light"href="/movies">Home</a>
         <form class="form-inline my-2 my-lg-0" action="{{path('movies')}}" method="get" >
            <input name="search" class="form-control mr-sm-2"  type="search" placeholder="Rechercher">
-           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+           <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Rechercher</button>
          </form>
     </nav>
 </div>
@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-center" style="background-color:white">{{author.nationality}} né le : {{author.birthday|date('d-m-Y')}}</h5>
                         <p class="card-text" style="background-color:white">{{author.biography}}</p>
-                        <a href="{{author.link}}" class="btn btn-primary">En savoir plus</a>
+                        <a href="{{author.link}}" class="btn btn-danger">En savoir plus</a>
                     </div>
             </div>
         </div>

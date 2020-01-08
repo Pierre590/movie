@@ -29,7 +29,7 @@
         <a class="navbar-brand text-light"href="{{ path('movies', {id: movie.id}) }}">Home</a>
         <form class="form-inline my-2 my-lg-0" action="{{path('movies')}}" method="get" >
            <input name="search" class="form-control mr-sm-2"  type="search" placeholder="Rechercher">
-           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+           <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Rechercher</button>
          </form>
     </nav>
 </div>
@@ -50,11 +50,11 @@
         </div>
         <div class="note text-danger mb-2 font-weight-bold">Note : {{ movie.reviews }} / 5</div>
         <p class="lead text-center">
-            <a class="btn btn-primary mb-2 mt-2" href="{{ movie.link }}" role="button">Allociné</a>
-            <a class="btn btn-primary mt-3 mb-3" href="{{ path('author', {
+            <a class="btn btn-danger mb-2 mt-2" href="{{ movie.link }}" role="button">Allociné</a>
+            <a class="btn btn-danger mt-3 mb-3" href="{{ path('author', {
                 id: movie.author.id
             }) }}" role="button">{{ movie.author.name }}</a>
-            <button class="btn btn-primary" type="button" data-toggle="collapse"
+            <button class="btn btn-danger" type="button" data-toggle="collapse"
             data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
             Filmographies
             </button>
