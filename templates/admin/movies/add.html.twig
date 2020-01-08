@@ -3,6 +3,7 @@
 {% block title %}Films{% endblock %}
 
 {% block stylesheets %}
+
     <style>
 
     body {
@@ -17,8 +18,11 @@
 
 {% block body %}
 
-<div class="container text-center text-light">
-    <h1>Ajouter un film</h1>
+<div class="container text-light">
+    <div class="title text-center">
+        <h1>Ajouter un film</h1>
+    </div>
+    {{form(form)}}
 </div>
 
 {% endblock %}
