@@ -6,33 +6,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-use App\Form\MoviesType;
-use App\Entity\Movies;
+use App\Form\AuthorsType;
+use App\Entity\Authors;
 
 
-class MoviesController extends AbstractController
+class AuthorsController extends AbstractController
 {
     /**
-     * @Route("/movies", name="admin_movies_add")
+     * @Route("/authors", name="admin_authors_add")
      */
      public function add(Request $request)
     {
-        $movies = new Movies;
-        $form = $this->createForm(MoviesType::class, $movies);
+        $authors = new Authors;
+        $form = $this->createForm(AuthorsType::class, $authors);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $movie = $form->getData();
+            $authors = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($movie);
+            $entityManager->persist($authors);
             $entityManager->flush();
+
+            // redirects to the "movies" route
+            return $this->redirectToRoute('movies');
         }
 
-        return $this->render('admin/movies/add.html.twig',[
+
+
+        return $this->render('admin/authors/aut.html.twig',[
             'form' => $form->createView(),
 
         ]);
     }
-
 
 }
