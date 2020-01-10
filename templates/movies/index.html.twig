@@ -62,11 +62,11 @@
 
     function showMovies() {
 
-        if (hasRequest) {
+        if (!next) {
             return
         }
 
-        hasRequest = true
+        next = false
 
         $.ajax({
             url: '{{ path("movies_ajax") }}?offset=' + offset + '&' + search,
@@ -74,7 +74,7 @@
         }).done(function(html) {
             offset += limit
             $( "#scroll" ).append(html);
-            hasRequest = false
+            next = html.trim()
         });
     }
 
@@ -82,7 +82,7 @@
 
     const limit = {{ limit }};
     let offset = 0
-    let hasRequest = false
+    let next = true
 
     showMovies()
     $(window).scroll(function() {
