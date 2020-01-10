@@ -1,0 +1,18 @@
+{% for movie in movies %}
+    <div class="card-deck mb-3 col-md-4">
+        <div class="card ">
+            <div class="row">
+                <div class="col md-6 text-center mt-2">
+                    <div class="card-body">
+                        <h5 class="card-title text-danger font-weight-bold">{{ movie.name}}</h5>
+                    </div>
+                    <img class="card-img img-fluid" src="{{ movie.cover }}" alt="Image du film">
+                    <div class="detail">
+                        <a class="btn btn-danger mt-3 mb-3" href="{{ path('movie', {id: movie.id}) }}"
+                        role="button">Détail du film</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

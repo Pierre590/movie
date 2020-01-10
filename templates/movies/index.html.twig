@@ -49,32 +49,47 @@
 </div>
 
 <div class="container">
-    <div class="row ">
-        {% for movies in list %}
-            <div class="card-deck mb-3 col-md-4">
-                <div class="card ">
-                    <div class="row">
-                        <div class="col md-6 text-center mt-2">
-                            <div class="card-body">
-                                <h5 class="card-title text-danger font-weight-bold">{{ movies.name}}</h5>
-                            </div>
-                            <img class="card-img img-fluid" src="{{ movies.cover }}" alt="Image du film">
-                            <div class="detail">
-                                <a class="btn btn-danger mt-3 mb-3" href="{{ path('movie', {id: movies.id}) }}"
-                                role="button">Détail du film</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-    <div class="page">
-        <div class="pagination mb-3">
-            {{ knp_pagination_render(list) }}
-        </div>
+    <div class="row" id="scroll">
+
     </div>
 </div>
 
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+
+    function showMovies() {
+
+        if (hasRequest) {
+            return
+        }
+
+        hasRequest = true
+
+        $.ajax({
+            url: '{{ path("movies_ajax") }}?offset=' + offset + '&' + search,
+            context: document.body
+        }).done(function(html) {
+            offset += limit
+            $( "#scroll" ).append(html);
+            hasRequest = false
+        });
+    }
+
+    const search = window.location.search.substr(1)
+
+    const limit = {{ limit }};
+    let offset = 0
+    let hasRequest = false
+
+    showMovies()
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+            showMovies()
+        }
+    });
+    </script>
 
 {% endblock %}
